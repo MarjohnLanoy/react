@@ -1,7 +1,15 @@
 const container = document.querySelector(`.container`)
 const containerProgress = document.querySelector(`.progress-container`)
-const countSteps = 3;
+const btn = document.querySelector(`.submit-btn`)
+let countSteps 
 let activeSteps = 1
+
+const getEnterSteps = function() {
+   const inputSteps =+ document.querySelector(`.stepsValue`).value
+   countSteps = inputSteps
+   console.log(countSteps)
+   generateCircles()
+}
 
 const addHTML = function(numSteps){
    let result = []
@@ -15,7 +23,7 @@ const addHTML = function(numSteps){
 
 const generateCircles = function(){
    const circles = document.querySelectorAll(`.circle`)
-   const html = addHTML(countSteps)
+   const html = addHTML(countSteps).join(``)
    circles.forEach(el => el.remove())
    containerProgress.insertAdjacentHTML(`beforeend`, html)
 }
@@ -51,7 +59,7 @@ const updateBtn = function(e) {
 };
 
 const init = function(){
-   generateCircles()
+   btn.addEventListener(`click`, getEnterSteps)
    container.addEventListener(`click`,updateBtn)
 }
 init()
